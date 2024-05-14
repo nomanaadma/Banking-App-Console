@@ -10,7 +10,6 @@ namespace Banking_App_Console
         {
 
             User = user;
-
             Init();
 
         }
@@ -35,7 +34,7 @@ namespace Banking_App_Console
                 case "DepositMoney":
                     _ = new DepositMoney(User, this);
                     break;
-                
+
             }
 
             // var instance = Global.GetInstance(DashboardOptions.SelectedChoice.Value);

@@ -21,6 +21,17 @@ namespace Banking_App_Console
 
             FileSystem.UpdateUser(user);
 
+            var data = new ETransaction
+            {
+                Id = Global.GenerateId(),
+                From = "none",
+                To = user.Id,
+                Amount = amount,
+                Date = DateTime.Now.ToString(),
+            };
+
+            FileSystem.WriteData("Transactions", data);
+
             Console.WriteLine("Money Successfully Deposited.");
 
             dashboard.Init();

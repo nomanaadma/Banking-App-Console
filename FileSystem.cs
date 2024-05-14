@@ -18,11 +18,6 @@ namespace Banking_App_Console
             return Path.Combine(DataPath(), file) + extension;
         }
 
-        private static string ToValueString(Dictionary<string, string> data)
-        {
-            return string.Join(",", data.Select(v => v.Value) .ToArray());
-        }
-
         public static string GetValues(object obj)
         {
             var properties = obj.GetType().GetProperties();
@@ -123,7 +118,7 @@ namespace Banking_App_Console
             foreach (var row in fileData)
             {
                 if (row.Contains(rowId))
-                    newData += rowData; // updated row
+                    newData += rowData;
                 else
                     newData += row + "\r\n";
             }

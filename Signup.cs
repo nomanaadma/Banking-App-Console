@@ -32,7 +32,7 @@ namespace Banking_App_Console
                 Cvc = Global.GenerateNumber(3),
             };
 
-            FileSystem.WriteData("users", data);
+            FileSystem.WriteData("Users", data);
 
             Console.WriteLine("Successfully Signed Up");
 
