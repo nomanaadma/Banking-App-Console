@@ -1,4 +1,6 @@
-﻿namespace Banking_App_Console
+﻿using Banking_App_Console.Validators;
+
+namespace Banking_App_Console
 {
     public class GlobalCus
     {
@@ -25,6 +27,33 @@
 
             return  string.Join("", charArr)[..6];
 
+        }
+        public static Validator TakeInput(string name, string msg, Validator validator)
+        {
+
+            Console.WriteLine("\n" + msg);
+
+            if (validator is OptionValidator optionValidator)
+            {
+                foreach (var choices in optionValidator.Choices)
+                {
+                    Console.WriteLine($"{choices.Id} {choices.Value}");
+                }
+
+            }
+
+            var input = Console.ReadLine();
+
+            validator.Valid(name, input);
+
+
+            if (validator.Errors != "")
+            {
+                Console.WriteLine(validator.Errors);
+                return TakeInput(name, msg, validator);
+            }
+
+            return validator;
         }
 
     }

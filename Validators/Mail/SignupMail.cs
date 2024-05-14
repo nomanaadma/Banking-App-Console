@@ -2,21 +2,21 @@
 {
     internal class SignupMail : BasicMail
     {
-        public Dictionary<string, string> User = [];
         public override IValidator Valid(string name, string email)
         {
             base.Valid(name, email);
 
             if (Errors != "") return this;
 
-            User = FileSystemCus.FindOne("users", email);
+            var matchingUser = FileSystemCus.FindOne("users", email);
 
-            if (User.Count == 0)
-                Errors += "\n - The User with this email doesn't Exists";
+            if (matchingUser.Count != 0)
+                Errors += "\n - The User with this email already Exists";
 
             return this;
 
         }
 
     }
+
 }

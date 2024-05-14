@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Banking_App_Console.Validators.Mail;
+using Banking_App_Console.Validators.Password;
 
 namespace Banking_App_Console
 {
@@ -10,7 +7,18 @@ namespace Banking_App_Console
     {
         public Login()
         {
-            Console.WriteLine("Login Class Called");
+
+            var emailObj = (LoginMail)GlobalCus.TakeInput("Email", "Enter your Email:", new LoginMail() );
+
+            var loginPassValidator = new LoginPassword
+            {
+               UserPass = emailObj.User["password"]
+            };
+
+            var passwordObj = GlobalCus.TakeInput("Password", "Enter your Password:", loginPassValidator);
+            
+
+
         }
     }
 }

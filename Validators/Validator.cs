@@ -1,6 +1,6 @@
 ﻿namespace Banking_App_Console.Validators
 {
-    internal class Validator : IValidator
+    public class Validator : IValidator
     {
         public string Input { get; set; }
 

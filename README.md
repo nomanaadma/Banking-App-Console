@@ -29,4 +29,8 @@ Class User {
 
  - prop of Errors in interface
 
+ - modify writeData function to accept class instead of dictionary
+	- 
+	- 
+	- 
 
