@@ -21,6 +21,7 @@ namespace Banking_App_Console
 
             var data = new User
             {
+                Id = Global.GenerateId(),
                 Fullname = fullnameObj.Input,
                 Email = emailObj.Input,
                 Password = passwordObj.Input,

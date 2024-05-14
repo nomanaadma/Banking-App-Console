@@ -14,14 +14,14 @@ namespace Banking_App_Console
                 Directory.CreateDirectory(dataFolderPath);
 
             // creating user file
-            var userPath = FileSystem.FilePath("users");
+            var userPath = FileSystem.FilePath("Users");
             if (!File.Exists(userPath))
                 File.WriteAllText(userPath, "Id,Fullname,Email,Password,Cnic,Calance,Card,Expiry,Cvc,\r\n");
 
             // creating transactions file
-            var transactionPath = FileSystem.FilePath("transactions");
+            var transactionPath = FileSystem.FilePath("Transactions");
             if (!File.Exists(transactionPath))
-                File.WriteAllText(transactionPath, "id,from,to,amount,date,\r\n");
+                File.WriteAllText(transactionPath, "Id,From,To,Amount,Date,\r\n");
 
             _ = new BankingApp();
 

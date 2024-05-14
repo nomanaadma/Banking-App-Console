@@ -9,6 +9,7 @@ namespace Banking_App_Console.Entities
     internal class Option
     {
         public int Id { get; set; }
+        public required string Msg { get; set; }
         public required string Value { get; set; }
     }
 }

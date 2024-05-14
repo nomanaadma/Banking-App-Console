@@ -1,7 +1,8 @@
 ﻿namespace Banking_App_Console.Entities
 {
-    public class User : Entry
+    public class User
     {
+        public string? Id { get; set; }
         public string? Fullname { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }

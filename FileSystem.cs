@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Banking_App_Console.Entities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Banking_App_Console
 {
@@ -9,7 +10,7 @@ namespace Banking_App_Console
         
         public static string DataPath()
         {
-            return Path.Combine(Path.GetFullPath(@"..\..\..\"), "data");
+            return Path.Combine(Path.GetFullPath(@"..\..\..\"), "Data");
         }
 
         public static string FilePath(string file)
@@ -28,10 +29,9 @@ namespace Banking_App_Console
             return string.Join(',', properties.Select(prop => prop.GetValue(obj)))+",\n";
         }
 
-        public static void WriteData(string file, Entry data)
+        public static void WriteData(string file, object data)
         {
             file = FilePath(file);
-            data.Id = Global.GenerateId();
             var dataRow = GetValues(data);
             File.AppendAllText(file, dataRow);
         }
@@ -84,15 +84,14 @@ namespace Banking_App_Console
 
         public static User? FindAUser(string data)
         {
-            var result = FindAll("users", data, true);
-
+            var result = FindAll("Users", data, true);
 
             if (result.Count == 0) return null;
 
             var user = new User();
             SetEntityPropertiesFromDictionary(user, result[0]);
 
-            return user; 
+            return user;
 
         }
 
@@ -101,25 +100,30 @@ namespace Banking_App_Console
             var properties = entity.GetType().GetProperties();
             foreach (var prop in properties)
             {
-                if (data.ContainsKey(prop.Name))
+                if (data.TryGetValue(prop.Name, out string? value))
                 {
-                    prop.SetValue(entity, data[prop.Name]);
+                    prop.SetValue(entity, value);
                 }
             }
         }
+        public static void UpdateUser(User user)
+        {
+            var dataRow = GetValues(user);
+            UpdateRow("Users", dataRow);
+        }
 
-        public static void UpdateRow(string file, Dictionary<string, string> rowData)
+        public static void UpdateRow(string file, string rowData)
         {
 
             var fileData = ReadData(file);
             var newData = "";
 
-            var rowId = rowData.First().Value + ',';
+            var rowId = rowData.Split(',')[0] + ',';
 
             foreach (var row in fileData)
             {
                 if (row.Contains(rowId))
-                    newData += ToValueString(rowData) + "\r\n"; // updated row
+                    newData += rowData; // updated row
                 else
                     newData += row + "\r\n";
             }

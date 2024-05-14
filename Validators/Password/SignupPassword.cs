@@ -17,7 +17,7 @@ namespace Banking_App_Console.Validators.Password
 
         }
 
-        private bool ValidatePassword(string passwd)
+        private static bool ValidatePassword(string passwd)
         {
 
             if (passwd.Length < 5 || passwd.Length > 10)

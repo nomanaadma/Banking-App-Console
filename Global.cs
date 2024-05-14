@@ -37,7 +37,7 @@ namespace Banking_App_Console
             {
                 foreach (var choices in optionValidator.Choices)
                 {
-                    Console.WriteLine($"{choices.Id} {choices.Value}");
+                    Console.WriteLine($"{choices.Id}- {choices.Msg}");
                 }
 
             }
@@ -53,6 +53,12 @@ namespace Banking_App_Console
             }
 
             return validator;
+        }
+
+        public static object GetInstance(string strFullyQualifiedName)
+        {
+            var t = Type.GetType("Banking_App_Console." + strFullyQualifiedName);
+            return Activator.CreateInstance(t);
         }
 
     }
