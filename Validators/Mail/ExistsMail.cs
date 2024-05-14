@@ -1,6 +1,6 @@
 ﻿namespace Banking_App_Console.Validators.Mail
 {
-    internal class SignupMail : BasicMail
+    internal class ExistsMail : BasicMail
     {
         public override IValidator Valid(string name, string email)
         {

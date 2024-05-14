@@ -32,7 +32,7 @@ namespace Banking_App_Console
 
             FileSystem.WriteData("Transactions", data);
 
-            Console.WriteLine("Money Successfully Deposited.");
+            Console.WriteLine("Money Deposited Successfully.");
 
             dashboard.Init();
 

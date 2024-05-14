@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Banking_App_Console.Validators.Mail
 {
-    internal class LoginMail : BasicMail
+    internal class NotExistsMail : BasicMail
     {
         public User? User = null;
         public override IValidator Valid(string name, string email)

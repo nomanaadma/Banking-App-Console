@@ -1,8 +1,5 @@
 ﻿using Banking_App_Console.Entities;
-using Banking_App_Console.Validators.Balance;
-using Banking_App_Console.Validators.Password;
 using ConsoleTables;
-using System.Data;
 
 namespace Banking_App_Console
 {

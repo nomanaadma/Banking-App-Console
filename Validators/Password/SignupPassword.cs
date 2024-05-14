@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Banking_App_Console.Validators.Password
+﻿namespace Banking_App_Console.Validators.Password
 {
     internal class SignupPassword : Validator
     {

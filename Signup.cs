@@ -11,7 +11,7 @@ namespace Banking_App_Console
     {
         public Signup() {
 
-            var emailObj = Global.TakeInput("Email", "Enter your Email:", new SignupMail());
+            var emailObj = Global.TakeInput("Email", "Enter your Email:", new ExistsMail());
 
             var cnicObj = Global.TakeInput("CNIC", "Enter your CNIC:", new SignupCnic());
 

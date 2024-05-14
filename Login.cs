@@ -8,7 +8,7 @@ namespace Banking_App_Console
         public Login()
         {
 
-            var emailObj = (LoginMail)Global.TakeInput("Email", "Enter your Email:", new LoginMail() );
+            var emailObj = (NotExistsMail)Global.TakeInput("Email", "Enter your Email:", new NotExistsMail() );
 
             var loginPassValidator = new LoginPassword
             {

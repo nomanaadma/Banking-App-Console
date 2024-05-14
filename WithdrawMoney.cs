@@ -36,7 +36,7 @@ namespace Banking_App_Console
 
             FileSystem.WriteData("Transactions", data);
 
-            Console.WriteLine("Money Successfully Withdrewed.");
+            Console.WriteLine("Money Withdrew Successfully.");
 
             dashboard.Init();
 
