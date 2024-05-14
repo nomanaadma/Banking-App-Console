@@ -1,20 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Banking_App_Console.Validators;
+using Banking_App_Console.Validators.Mail;
+using Banking_App_Console.Validators.Password;
 
 namespace Banking_App_Console
 {
     internal class BankingApp
     {
+        private static Validator TakeInput(string name, string msg, Validator validator)
+        {
+            Console.WriteLine( "\n"+ msg);
+
+            var input = Console.ReadLine();
+            validator.Valid(name, input);
+            
+            if(validator.Errors != "")
+            {
+                Console.WriteLine(validator.Errors);
+                return TakeInput(name, msg, validator);
+            } 
+
+            return validator;
+        }
+
         public BankingApp()
         {
 
-            int choice;
+            var emailObj = (SignupMail)TakeInput("Email", "Enter your Email:", new SignupMail() );
+
+            //Console.WriteLine(emailObj.matchingUser["password"]);
+
+            // Console.WriteLine(emailObj.Input);
+
+            // var passwordObjs = TakeInput("Password", "Enter your Password:", new SignupPassword());
+
+            var loginPassValidator = new LoginPassword
+            {
+                UserPass = emailObj.User["password"]
+            };
+
+            var passwordObj = TakeInput("Password", "Enter your Password:", loginPassValidator);
+
+
+
+            Console.WriteLine(passwordObj.Input);
+
+            return;
+
+
+            /* int choice;
 
             do
             {
+
+                Welcome:
 
                 Console.WriteLine("Welcome to NS Banking");
                 Console.WriteLine("Select your option below:");
@@ -29,6 +67,7 @@ namespace Banking_App_Console
                 {
 
                     case 1:
+
 
                         string? mailValidation;
 
@@ -63,6 +102,11 @@ namespace Banking_App_Console
                             Console.WriteLine("Enter your Password:");
                             var password = Console.ReadLine();
 
+                            if(password == "back")
+                            {
+                                goto Welcome;
+                            }
+
                             if (password.Length <= 0)
                                 passwordValidation += "\n - The password must not be empty.";
 
@@ -90,9 +134,10 @@ namespace Banking_App_Console
                         break;
                 }
 
-            } while (choice != 4);
+            } while (choice != 4); */
 
 
         }
+
     }
 }

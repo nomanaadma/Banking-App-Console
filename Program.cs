@@ -23,7 +23,7 @@ namespace Banking_App_Console
             if (!File.Exists(transactionPath))
                 File.WriteAllText(transactionPath, "id,from,to,amount,date,\r\n");
 
-            new BankingApp();
+            _ = new BankingApp();
 
         }
 
