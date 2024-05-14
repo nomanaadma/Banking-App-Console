@@ -13,8 +13,8 @@
 
             Errors = "";
 
-            if (input == null || input.Length == 0 || string.IsNullOrEmpty(input) || input.Length < 5)
-                Errors = $"\n - {name} must not be empty and should be more than 5 characters";
+            if (input == null || input.Length == 0 || string.IsNullOrEmpty(input))
+                Errors = $"\n - {name} must not be empty.";
 
             return this;
         

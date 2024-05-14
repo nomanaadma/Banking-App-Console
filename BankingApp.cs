@@ -1,19 +1,40 @@
-﻿using Banking_App_Console.Validators;
+﻿using Banking_App_Console.Entities;
+using Banking_App_Console.Validators;
 using Banking_App_Console.Validators.Mail;
 using Banking_App_Console.Validators.Password;
+using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Banking_App_Console
 {
     internal class BankingApp
     {
+        public enum WelcomOperations
+        {
+            Login = 1,
+            Signup = 2,
+        }
+
         private static Validator TakeInput(string name, string msg, Validator validator)
         {
-            Console.WriteLine( "\n"+ msg);
+
+            Console.WriteLine("\n" + msg);
+
+            if (validator is OptionValidator optionValidator)
+            {
+                foreach (var choices in optionValidator.Choices)
+                {
+                    Console.WriteLine($"{choices.Id} {choices.Value}");
+                }
+
+            }
 
             var input = Console.ReadLine();
+
             validator.Valid(name, input);
-            
-            if(validator.Errors != "")
+
+
+            if (validator.Errors != "")
             {
                 Console.WriteLine(validator.Errors);
                 return TakeInput(name, msg, validator);
@@ -25,7 +46,43 @@ namespace Banking_App_Console
         public BankingApp()
         {
 
-            var emailObj = (SignupMail)TakeInput("Email", "Enter your Email:", new SignupMail() );
+            Console.WriteLine("working");
+
+            Console.WriteLine("Welcome to NS Banking");
+
+            Console.WriteLine("\nAt any step type 'Back' go to to previous step and type 'Exit' to close the application.");
+
+            var WelcomeOptionValidator = new OptionValidator
+            {
+                Choices = [
+                    new Option { Id = 1, Value = "Login" },
+                    new Option { Id = 2, Value = "Signup" },
+                ]    
+            };
+
+            var WelcomeOption = (OptionValidator)TakeInput("Option", "Select your option below:", WelcomeOptionValidator);
+
+            GetInstance(WelcomeOption.SelectedChoice.Value);
+
+
+
+
+
+
+            // var ChoiceClassType = Type.GetType(WelcomeOption.SelectedChoice.Value);
+
+            // Console.WriteLine(ChoiceClassType.Name);
+
+            // var ChoiceClass = Activator.CreateInstance(ChoiceClassType);
+
+
+
+            //var choice = TakeInput("Choice", "Enter your Email:", new SignupMail());
+
+
+
+
+            // var emailObj = (SignupMail)TakeInput("Email", "Enter your Email:", new SignupMail() );
 
             //Console.WriteLine(emailObj.matchingUser["password"]);
 
@@ -33,16 +90,16 @@ namespace Banking_App_Console
 
             // var passwordObjs = TakeInput("Password", "Enter your Password:", new SignupPassword());
 
-            var loginPassValidator = new LoginPassword
+            /*var loginPassValidator = new LoginPassword
             {
                 UserPass = emailObj.User["password"]
-            };
+            };*/
 
-            var passwordObj = TakeInput("Password", "Enter your Password:", loginPassValidator);
+            // var passwordObj = TakeInput("Password", "Enter your Password:", loginPassValidator);
 
 
 
-            Console.WriteLine(passwordObj.Input);
+            // Console.WriteLine(passwordObj.Input);
 
             return;
 
@@ -137,6 +194,12 @@ namespace Banking_App_Console
             } while (choice != 4); */
 
 
+        }
+
+        public static object GetInstance(string strFullyQualifiedName)
+        {
+            var t = Type.GetType("Banking_App_Console." + strFullyQualifiedName);
+            return Activator.CreateInstance(t);
         }
 
     }
