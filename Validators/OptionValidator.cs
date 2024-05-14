@@ -12,7 +12,7 @@ namespace Banking_App_Console.Validators
 
             if (Errors != "") return this;
 
-            SelectedChoice = Choices.FirstOrDefault(c => c.Id == int.Parse(choice) );
+            SelectedChoice = Choices.FirstOrDefault(c => c.Id.ToString() == choice);
 
             if (SelectedChoice == null)
                 Errors += "Invalid Option Selected. Please try again";

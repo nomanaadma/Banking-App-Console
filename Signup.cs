@@ -34,7 +34,7 @@ namespace Banking_App_Console
 
             FileSystem.WriteData("Users", data);
 
-            Console.Clear();
+            Console.Clear(); Console.WriteLine("\x1b[3J");
 
             Console.WriteLine("Successfully Signed Up\n");
 

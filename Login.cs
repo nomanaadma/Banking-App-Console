@@ -16,7 +16,7 @@ namespace Banking_App_Console
 
             var passwordObj = Global.TakeInput("Password", "Enter your Password:", loginPassValidator);
 
-            Console.Clear();
+            Console.Clear(); Console.WriteLine("\x1b[3J");
             Console.WriteLine("Successfuly Logged In.");
 
             _ = new Dashboard(emailObj.User, home);

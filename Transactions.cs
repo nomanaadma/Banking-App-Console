@@ -54,6 +54,7 @@ namespace Banking_App_Console
                 table.AddRow(reference, transAmount, rowData.Date);
             }
 
+            Console.Clear(); Console.WriteLine("\x1b[3J");
             table.Write();
 
             dashboard.Init();

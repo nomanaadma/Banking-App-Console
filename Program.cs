@@ -16,7 +16,7 @@ namespace Banking_App_Console
             // creating user file
             var userPath = FileSystem.FilePath("Users");
             if (!File.Exists(userPath))
-                File.WriteAllText(userPath, "Id,Fullname,Email,Password,Cnic,Calance,Card,Expiry,Cvc,\r\n");
+                File.WriteAllText(userPath, "Id,Fullname,Email,Password,Cnic,Balance,Card,Expiry,Cvc,\r\n");
 
             // creating transactions file
             var transactionPath = FileSystem.FilePath("Transactions");

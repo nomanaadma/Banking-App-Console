@@ -85,6 +85,7 @@ namespace Banking_App_Console
 
             FileSystem.WriteData("Transactions", data);
 
+            Console.Clear(); Console.WriteLine("\x1b[3J");
             Console.WriteLine("Amount Transferred Successfully.");
 
             dashboard.Init();

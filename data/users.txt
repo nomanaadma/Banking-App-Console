@@ -1,5 +1,5 @@
-Id,Fullname,Email,Password,Cnic,Calance,Card,Expiry,Cvc,
-NaWqDz,Noman Shoukat,nomanaadma@gmail.com,Super123,4230148518495,10,8427075469507647,26,440,
+Id,Fullname,Email,Password,Cnic,Balance,Card,Expiry,Cvc,
+NaWqDz,Noman Shoukat,nomanaadma@gmail.com,Super123,4230148518495,1900,8427075469507647,26,440,
 CAU6nT,Amin,aminshoukat@gmail.com,Super123,4230199999999,0,1033369050056491,53,023,
 QRAYPN,Zubair Shoukat,zubairshoukat@gmail.com,Super123,4230111111111,0,4719293659658737,41,823,
-IENoWp,Hassan Ghori,hassan@gmail.com,Super123,2222222222222,0,9492181558706000,89,991,
+IENoWp,Hassan Ghori,hassan@gmail.com,Super123,2222222222222,600,9492181558706000,89,991,

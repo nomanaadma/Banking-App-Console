@@ -49,6 +49,7 @@ namespace Banking_App_Console
                     _ = new Transactions(User, this);
                     break;
                 case "Logout":
+                    Console.Clear(); Console.WriteLine("\x1b[3J");
                     Home.Init();
                     break;
 
@@ -61,6 +62,8 @@ namespace Banking_App_Console
             Console.WriteLine("\nWelcome\n");
 
             Console.WriteLine(User.Fullname);
+
+            Console.WriteLine(User.Balance);
 
             var amountCr = double.Parse(User.Balance);
 
