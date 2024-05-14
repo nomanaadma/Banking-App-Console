@@ -1,7 +1,7 @@
 ﻿using Banking_App_Console.Entities;
 using Banking_App_Console.Validators;
 using Banking_App_Console.Validators.Balance;
-using Banking_App_Console.Validators.Password;
+using Banking_App_Console.Validators.Mail;
 
 namespace Banking_App_Console
 {
@@ -20,24 +20,39 @@ namespace Banking_App_Console
 
             var SendByOption = (OptionValidator)Global.TakeInput("Option", "Send By:", SendByOptionsValidator);
 
+            User? bfUser = null;
+
             switch (SendByOption.SelectedChoice.Value)
             {
                 case "Email":
-                    
 
+                    var SendMoneyMailValidator = new SendMoneyMail
+                    {
+                        LoggedInUser = user
+                    };
 
-                    // _ = new DepositMoney(User, this);
+                    var emailObj = (SendMoneyMail)Global.TakeInput("Email", "Enter Email:", SendMoneyMailValidator);
+
+                    bfUser = emailObj.User;
 
                     break;
+
                 case "CNIC":
-                    
-                    // _ = new SendMoney(User, this);
+
+                    var SendMoneyCnicValidator = new SendMoneyCnic
+                    {
+                        LoggedInUser = user
+                    };
+
+                    var CnicObj = (SendMoneyCnic)Global.TakeInput("CNIC", "Enter CNIC:", SendMoneyCnicValidator);
+
+                    bfUser = CnicObj.User;
 
                     break;
             }
 
 
-            /*var loginPassValidator = new DeductBalance
+            var loginPassValidator = new DeductBalance
             {
                 User = user
             };
@@ -45,10 +60,16 @@ namespace Banking_App_Console
             var amountObj = Global.TakeInput("Amount", "Enter Amount:", loginPassValidator);
             var amount = amountObj.Input;
 
-            var amountInt = int.Parse(amount);
-            var userBalance = int.Parse(user.Balance);
+            var bfUserBalance = int.Parse(bfUser.Balance);
 
-            var newAmount = (userBalance - amountInt).ToString();
+            var amount_entered = int.Parse(amount);
+
+            bfUser.Balance = (bfUserBalance + amount_entered).ToString();
+
+            FileSystem.UpdateUser(bfUser);
+
+            var currentUserBalance = int.Parse(user.Balance);
+            var newAmount = (currentUserBalance - amount_entered).ToString();
             user.Balance = newAmount;
 
             FileSystem.UpdateUser(user);
@@ -57,16 +78,16 @@ namespace Banking_App_Console
             {
                 Id = Global.GenerateId(),
                 From = user.Id,
-                To = "none",
+                To = bfUser.Id,
                 Amount = amount,
                 Date = DateTime.Now.ToString(),
             };
 
             FileSystem.WriteData("Transactions", data);
 
-            Console.WriteLine("Money Successfully Withdrewed.");*/
+            Console.WriteLine("Amount Transferred Successfully.");
 
-            // dashboard.Init();
+            dashboard.Init();
 
         }
     }
