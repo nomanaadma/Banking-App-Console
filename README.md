@@ -51,3 +51,26 @@ Class User {
 
 
 - Remove Extra Namespace from every file
+
+
+
+
+ var user = new User
+            {
+                Id = "YBBR4h",
+                Fullname = "Noman Shoukat",
+                Email = "nomanaadma@gmail.com",
+                Password = "Super123",
+                Cnic = "4230148518495",
+                Balance = "1200",
+                Card = "7412844963938986",
+                Expiry = "15",
+                Cvc = "123",
+            };
+
+            new Dashboard(user, this);
+
+
+            return;
+
+

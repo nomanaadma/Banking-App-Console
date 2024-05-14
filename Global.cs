@@ -55,12 +55,6 @@ namespace Banking_App_Console
             return validator;
         }
 
-        public static object GetInstance(string strFullyQualifiedName)
-        {
-            var t = Type.GetType("Banking_App_Console." + strFullyQualifiedName);
-            return Activator.CreateInstance(t);
-        }
-
     }
     static class RandomExtensions
     {

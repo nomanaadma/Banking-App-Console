@@ -18,28 +18,8 @@ namespace Banking_App_Console
 
         public void Init()
         {
-            var user = new User
-            {
-                Id = "YBBR4h",
-                Fullname = "Noman Shoukat",
-                Email = "nomanaadma@gmail.com",
-                Password = "Super123",
-                Cnic = "4230148518495",
-                Balance = "1200",
-                Card = "7412844963938986",
-                Expiry = "15",
-                Cvc = "123",
-            };
-
-            new Dashboard(user, this);
-
-
-            return;
-
-
-            /*Console.WriteLine("Welcome to NS Banking");
-
-            Console.WriteLine("\nAt any step type 'Back' go to to previous step and type 'Exit' to close the application.");
+           
+            Console.WriteLine("Welcome to NS Banking");
 
             var WelcomeOptionValidator = new OptionValidator
             {
@@ -51,7 +31,16 @@ namespace Banking_App_Console
 
             var WelcomeOption = (OptionValidator)Global.TakeInput("Option", "Select your option below:", WelcomeOptionValidator);
 
-            Global.GetInstance(WelcomeOption.SelectedChoice.Value);*/
+            switch (WelcomeOption.SelectedChoice.Value)
+            {
+                case "Login":
+                    _ = new Login(this);
+                    break;
+                case "Signup":
+                    _ = new Signup(this);
+                    break;
+            }
+
         }
 
     }

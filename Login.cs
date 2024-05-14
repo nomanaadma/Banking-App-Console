@@ -5,9 +5,8 @@ namespace Banking_App_Console
 {
     internal class Login
     {
-        public Login()
+        public Login(BankingApp home)
         {
-
             var emailObj = (NotExistsMail)Global.TakeInput("Email", "Enter your Email:", new NotExistsMail() );
 
             var loginPassValidator = new LoginPassword
@@ -17,7 +16,10 @@ namespace Banking_App_Console
 
             var passwordObj = Global.TakeInput("Password", "Enter your Password:", loginPassValidator);
 
-            // new Dashboard(emailObj.User);
+            Console.Clear();
+            Console.WriteLine("Successfuly Logged In.");
+
+            _ = new Dashboard(emailObj.User, home);
 
         }
     }

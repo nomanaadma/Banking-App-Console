@@ -9,7 +9,7 @@ namespace Banking_App_Console
 {
     internal class Signup
     {
-        public Signup() {
+        public Signup(BankingApp home) {
 
             var emailObj = Global.TakeInput("Email", "Enter your Email:", new ExistsMail());
 
@@ -34,7 +34,11 @@ namespace Banking_App_Console
 
             FileSystem.WriteData("Users", data);
 
-            Console.WriteLine("Successfully Signed Up");
+            Console.Clear();
+
+            Console.WriteLine("Successfully Signed Up\n");
+
+            home.Init();
 
         }
     }
