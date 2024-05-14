@@ -17,7 +17,7 @@ namespace Banking_App_Console
 
             var passwordObj = Global.TakeInput("Password", "Enter your Password:", loginPassValidator);
 
-            new Dashboard(emailObj.User);
+            // new Dashboard(emailObj.User);
 
         }
     }

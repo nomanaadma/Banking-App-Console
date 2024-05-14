@@ -71,6 +71,23 @@ namespace Banking_App_Console
             return foundRows;
         }
 
+        public static List<ETransaction> FindAllTransactions(string data)
+        {
+            var foundRowsD = FindAll("Transactions", data);
+
+            var foundRowsT = new List<ETransaction>();
+
+            foreach (var row in foundRowsD)
+            {
+                var ETransaction = new ETransaction();
+                SetEntityPropertiesFromDictionary(ETransaction, row);
+                foundRowsT.Add(ETransaction);
+            }
+
+            return foundRowsT;
+        }
+
+
         public static Dictionary<string, string> FindOne(string file, string data)
         {
             var result = FindAll(file, data, true);

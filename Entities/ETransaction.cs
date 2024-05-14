@@ -1,6 +1,6 @@
 ﻿namespace Banking_App_Console.Entities
 {
-    internal class ETransaction
+    public class ETransaction
     {
         public string? Id { get; set; }
         public string? From { get; set; }

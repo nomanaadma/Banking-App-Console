@@ -1,15 +1,18 @@
 ﻿using Banking_App_Console.Entities;
 using Banking_App_Console.Validators;
+using System.Transactions;
 
 namespace Banking_App_Console
 {
     internal class Dashboard
     {
         public User User { get; set; }
-        public Dashboard(User user)
+        public BankingApp Home { get; set; }
+        public Dashboard(User user, BankingApp home)
         {
 
             User = user;
+            Home = home;
             Init();
 
         }
@@ -25,8 +28,10 @@ namespace Banking_App_Console
                     new Option { Id = 2, Msg = "Send Money", Value = "SendMoney" },
                     new Option { Id = 3, Msg = "Withdraw Money", Value = "WithdrawMoney" },
                     new Option { Id = 4, Msg = "Transactions", Value = "Transactions" },
+                    new Option { Id = 5, Msg = "Logout", Value = "Logout" },
                 ]
             };
+
             var DashboardOptions = (OptionValidator)Global.TakeInput("Option", "Select your option below:", DashboardOptionsValidator);
 
             switch (DashboardOptions.SelectedChoice.Value)
@@ -37,10 +42,15 @@ namespace Banking_App_Console
                 case "WithdrawMoney":
                     _ = new WithdrawMoney(User, this);
                     break;
+                case "Transactions":
+                    _ = new Transactions(User, this);
+                    break;
+                case "Logout":
+                    Home.Init();
+                    break;
 
             }
 
-            // var instance = Global.GetInstance(DashboardOptions.SelectedChoice.Value);
         }
 
         public void ShowWelcomeDetails()
@@ -57,7 +67,6 @@ namespace Banking_App_Console
             Console.WriteLine($"Expire: {User.Expiry}");
             Console.WriteLine($"CVC: {User.Cvc}");
         }
-
 
     }
 }

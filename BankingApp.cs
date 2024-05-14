@@ -13,7 +13,11 @@ namespace Banking_App_Console
 
         public BankingApp()
         {
+            Init();
+        }
 
+        public void Init()
+        {
             var user = new User
             {
                 Id = "YBBR4h",
@@ -27,13 +31,13 @@ namespace Banking_App_Console
                 Cvc = "123",
             };
 
-            new Dashboard(user);
+            new Dashboard(user, this);
 
 
             return;
 
 
-            Console.WriteLine("Welcome to NS Banking");
+            /*Console.WriteLine("Welcome to NS Banking");
 
             Console.WriteLine("\nAt any step type 'Back' go to to previous step and type 'Exit' to close the application.");
 
@@ -42,13 +46,12 @@ namespace Banking_App_Console
                 Choices = [
                     new Option { Id = 1, Msg = "Login", Value = "Login" },
                     new Option { Id = 2, Msg = "Signup", Value = "Signup" },
-                ]    
+                ]
             };
 
             var WelcomeOption = (OptionValidator)Global.TakeInput("Option", "Select your option below:", WelcomeOptionValidator);
 
-            Global.GetInstance(WelcomeOption.SelectedChoice.Value);
-
+            Global.GetInstance(WelcomeOption.SelectedChoice.Value);*/
         }
 
     }
