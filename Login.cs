@@ -8,14 +8,14 @@ namespace Banking_App_Console
         public Login()
         {
 
-            var emailObj = (LoginMail)GlobalCus.TakeInput("Email", "Enter your Email:", new LoginMail() );
+            var emailObj = (LoginMail)Global.TakeInput("Email", "Enter your Email:", new LoginMail() );
 
             var loginPassValidator = new LoginPassword
             {
-               UserPass = emailObj.User["password"]
+                User = emailObj.User
             };
 
-            var passwordObj = GlobalCus.TakeInput("Password", "Enter your Password:", loginPassValidator);
+            var passwordObj = Global.TakeInput("Password", "Enter your Password:", loginPassValidator);
             
 
 

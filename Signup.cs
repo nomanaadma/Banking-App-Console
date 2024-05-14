@@ -1,4 +1,5 @@
-﻿using Banking_App_Console.Validators;
+﻿using Banking_App_Console.Entities;
+using Banking_App_Console.Validators;
 using Banking_App_Console.Validators.Cnic;
 using Banking_App_Console.Validators.Mail;
 using Banking_App_Console.Validators.Password;
@@ -10,26 +11,27 @@ namespace Banking_App_Console
     {
         public Signup() {
 
-            var emailObj = GlobalCus.TakeInput("Email", "Enter your Email:", new SignupMail());
+            var emailObj = Global.TakeInput("Email", "Enter your Email:", new SignupMail());
 
-            var cnicObj = GlobalCus.TakeInput("CNIC", "Enter your CNIC:", new SignupCnic());
+            var cnicObj = Global.TakeInput("CNIC", "Enter your CNIC:", new SignupCnic());
 
-            var passwordObj = GlobalCus.TakeInput("Password", "Enter your Password:", new SignupPassword());
+            var passwordObj = Global.TakeInput("Password", "Enter your Password:", new SignupPassword());
 
-            var fullnameObj = GlobalCus.TakeInput("Full Name", "Enter your Full Name:", new Validator());
+            var fullnameObj = Global.TakeInput("Full Name", "Enter your Full Name:", new Validator());
 
-            Dictionary<string, string> data = [];
+            var data = new User
+            {
+                Fullname = fullnameObj.Input,
+                Email = emailObj.Input,
+                Password = passwordObj.Input,
+                Cnic = cnicObj.Input,
+                Balance = "0",
+                Card = Global.GenerateNumber(16),
+                Expiry = Global.GenerateNumber(2),
+                Cvc = Global.GenerateNumber(3),
+            };
 
-            data["fullname"] = fullnameObj.Input;
-            data["email"] = emailObj.Input;
-            data["password"] = passwordObj.Input;
-            data["cnic"] = cnicObj.Input;
-            data["balance"] = "0";
-            data["card"] = GlobalCus.GenerateNumber(16);
-            data["expiry"] = GlobalCus.GenerateNumber(2);
-            data["cvc"] = GlobalCus.GenerateNumber(3);
-
-            FileSystemCus.WriteData("users", data);
+            FileSystem.WriteData("users", data);
 
             Console.WriteLine("Successfully Signed Up");
 

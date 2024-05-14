@@ -2,7 +2,7 @@
 
 namespace Banking_App_Console
 {
-    public class GlobalCus
+    public class Global
     {
         public static string GenerateNumber(int count)
         {
@@ -45,7 +45,6 @@ namespace Banking_App_Console
             var input = Console.ReadLine();
 
             validator.Valid(name, input);
-
 
             if (validator.Errors != "")
             {

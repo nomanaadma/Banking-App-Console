@@ -8,9 +8,9 @@
 
             if (Errors != "") return this;
 
-            var matchingUser = FileSystemCus.FindOne("users", email);
+            var matchingUser = FileSystem.FindAUser(email);
 
-            if (matchingUser.Count != 0)
+            if (matchingUser != null)
                 Errors += "\n - The User with this email already Exists";
 
             return this;

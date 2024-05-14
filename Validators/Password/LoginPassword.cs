@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Banking_App_Console.Entities;
 
 namespace Banking_App_Console.Validators.Password
 {
     internal class LoginPassword : Validator
     {
-        public required string UserPass { private get; set; }
+        public required User User { private get; set; }
         public override IValidator Valid(string name, string password)
         {
             base.Valid(name, password);
 
             if (Errors != "") return this;
 
-            if(password != UserPass)
+            if(password != User.Password)
                 Errors += "\n - Invalid Password for the user";
 
             return this;

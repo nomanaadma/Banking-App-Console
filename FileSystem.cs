@@ -1,7 +1,9 @@
 ﻿using System.Text;
+using Banking_App_Console.Entities;
+
 namespace Banking_App_Console
 {
-    public class FileSystemCus
+    public class FileSystem
     {
         private static readonly string extension = ".txt";
         
@@ -20,10 +22,17 @@ namespace Banking_App_Console
             return string.Join(",", data.Select(v => v.Value) .ToArray());
         }
 
-        public static void WriteData(string file, Dictionary<string, string> data)
+        public static string GetValues(object obj)
+        {
+            var properties = obj.GetType().GetProperties();
+            return string.Join(',', properties.Select(prop => prop.GetValue(obj)))+",\n";
+        }
+
+        public static void WriteData(string file, Entry data)
         {
             file = FilePath(file);
-            string dataRow = GlobalCus.GenerateId() + "," + ToValueString(data) + ",\r\n";
+            data.Id = Global.GenerateId();
+            var dataRow = GetValues(data);
             File.AppendAllText(file, dataRow);
         }
 
@@ -71,6 +80,32 @@ namespace Banking_App_Console
         {
             var result = FindAll(file, data, true);
             return result.Count == 0 ? [] : result[0];
+        }
+
+        public static User? FindAUser(string data)
+        {
+            var result = FindAll("users", data, true);
+
+
+            if (result.Count == 0) return null;
+
+            var user = new User();
+            SetEntityPropertiesFromDictionary(user, result[0]);
+
+            return user; 
+
+        }
+
+        public static void SetEntityPropertiesFromDictionary(object entity, Dictionary<string, string> data)
+        {
+            var properties = entity.GetType().GetProperties();
+            foreach (var prop in properties)
+            {
+                if (data.ContainsKey(prop.Name))
+                {
+                    prop.SetValue(entity, data[prop.Name]);
+                }
+            }
         }
 
         public static void UpdateRow(string file, Dictionary<string, string> rowData)

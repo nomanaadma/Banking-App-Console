@@ -15,12 +15,9 @@ namespace Banking_App_Console.Validators.Cnic
 
             if (Errors != "") return this;
 
-            var getUserByCNIC = FileSystemCus.FindOne("users", cnic);
+            var getUserByCNIC = FileSystem.FindAUser(cnic);
 
-            Console.WriteLine(getUserByCNIC.Count);
-            Console.WriteLine(cnic);
-
-            if (getUserByCNIC.Count != 0)
+            if (getUserByCNIC != null)
                 Errors += "\n - The User with this CNIC already Exists";
 
             return this;

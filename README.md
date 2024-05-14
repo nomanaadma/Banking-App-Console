@@ -34,3 +34,17 @@ Class User {
 	- 
 	- 
 
+
+/* var user = new User
+            {
+                Fullname = "Fullname",
+                Email = "Email",
+                Password = "Password",
+                Cnic = "Cnic",
+                Balance = "0",
+                Card = Global.GenerateNumber(16),
+                Expiry = Global.GenerateNumber(2),
+                Cvc = Global.GenerateNumber(3),
+            };
+
+            return result.Count == 0 ? null : user;*/

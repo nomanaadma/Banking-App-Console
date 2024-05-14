@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Banking_App_Console.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +9,16 @@ namespace Banking_App_Console.Validators.Mail
 {
     internal class LoginMail : BasicMail
     {
-        public Dictionary<string, string> User = [];
+        public User? User = null;
         public override IValidator Valid(string name, string email)
         {
             base.Valid(name, email);
 
             if (Errors != "") return this;
 
-            User = FileSystemCus.FindOne("users", email);
+            User = FileSystem.FindAUser(email);
 
-            if (User.Count == 0)
+            if (User == null)
                 Errors += "\n - The User with this email doesn't Exists";
 
             return this;

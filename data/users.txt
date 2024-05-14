@@ -1,5 +1,6 @@
-id,full_name,email,password,cnic,balance,card_number,expiry,cvc,
+Id,Fullname,Email,Password,Cnic,Calance,Card,Expiry,Cvc,
 YBBR4h,Noman Shoukat,nomanaadma@gmail.com,Super123,4230148518495,1200,7412844963938986,15,
 YMsP0T,Amin Shoukat,aminshoukat4@gmail.com,Super123,4230148518496,500,3086770635357488,12,
 jPlChM,Zubair Shout,zubair@gmail.com,Super123,1111111111111,200,0282952640657090,44,389,
 YHbRLi,Noman Shoukat,noman@gmail.com,abcdE1,2222222222222,0,4901666825346787,69,191,
+asdjflkdjsf,nomanss@gmail.com,abdC2123,1234567891023,0,4332323065099734,68,099,adrg3s,

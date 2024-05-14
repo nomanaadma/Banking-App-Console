@@ -1,7 +1,6 @@
 ﻿using Banking_App_Console.Entities;
 using Banking_App_Console.Validators;
 
-
 namespace Banking_App_Console
 {
     internal class BankingApp
@@ -15,6 +14,12 @@ namespace Banking_App_Console
         public BankingApp()
         {
 
+            var test = FileSystem.FindAUser("jPlChM");
+           
+            // Console.WriteLine(test.Fullname);
+
+
+            return; 
             Console.WriteLine("Welcome to NS Banking");
 
             Console.WriteLine("\nAt any step type 'Back' go to to previous step and type 'Exit' to close the application.");
@@ -27,7 +32,7 @@ namespace Banking_App_Console
                 ]    
             };
 
-            var WelcomeOption = (OptionValidator)GlobalCus.TakeInput("Option", "Select your option below:", WelcomeOptionValidator);
+            var WelcomeOption = (OptionValidator)Global.TakeInput("Option", "Select your option below:", WelcomeOptionValidator);
 
             GetInstance(WelcomeOption.SelectedChoice.Value);
 
