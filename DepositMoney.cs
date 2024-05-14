@@ -8,9 +8,9 @@ namespace Banking_App_Console
         public DepositMoney(User user, Dashboard dashboard)
         {
 
-            var balanceObj = Global.TakeInput("Amount", "Enter Amount:", new BasicBalance());
+            var amountObj = Global.TakeInput("Amount", "Enter Amount:", new BasicBalance());
 
-            var amount = balanceObj.Input;
+            var amount = amountObj.Input;
 
             var currentUserBalance = int.Parse(user.Balance);
 

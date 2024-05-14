@@ -34,6 +34,9 @@ namespace Banking_App_Console
                 case "DepositMoney":
                     _ = new DepositMoney(User, this);
                     break;
+                case "WithdrawMoney":
+                    _ = new WithdrawMoney(User, this);
+                    break;
 
             }
 
