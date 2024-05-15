@@ -8,8 +8,8 @@ namespace Banking_App_Console.Entities
 {
     internal class Option
     {
-        public int Id { get; set; }
-        public required string Msg { get; set; }
-        public required string Value { get; set; }
+        public int Id { get; init; }
+        public required string Msg { get; init; }
+        public required string Value { get; init; }
     }
 }
