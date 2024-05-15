@@ -1,18 +1,17 @@
 ﻿using Banking_App_Console.Entities;
 using Banking_App_Console.Validators;
 using System.Transactions;
+using Banking_App_Console.Helpers;
 
 namespace Banking_App_Console
 {
     internal class Dashboard
     {
         public User User { get; set; }
-        public BankingApp Home { get; set; }
-        public Dashboard(User user, BankingApp home)
+        public Dashboard(User user)
         {
 
             User = user;
-            Home = home;
             Init();
 
         }
@@ -50,7 +49,8 @@ namespace Banking_App_Console
                     break;
                 case "Logout":
                     Console.Clear(); Console.WriteLine("\x1b[3J");
-                    Home.Init();
+                    Session.Instance.User = null;
+                    _ = new BankingApp();
                     break;
 
             }

@@ -1,4 +1,5 @@
 ﻿using Banking_App_Console.Entities;
+using Banking_App_Console.Helpers;
 using Banking_App_Console.Validators;
 
 namespace Banking_App_Console
@@ -18,8 +19,11 @@ namespace Banking_App_Console
 
         public void Init()
         {
-           
+            Session.Instance.User = null;
+            
             Console.WriteLine("Welcome to NS Banking");
+            
+            Console.WriteLine("\n At any step type 'back' to go back and type 'exit' to close the app.");
 
             var WelcomeOptionValidator = new OptionValidator
             {

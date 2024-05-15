@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+.idea/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -325,6 +327,8 @@ __pycache__/
 
 # Telerik's JustMock configuration file
 *.jmconfig
+
+.idea
 
 # BizTalk build output
 *.btp.cs
