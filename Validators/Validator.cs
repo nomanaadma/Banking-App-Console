@@ -29,12 +29,11 @@ namespace Banking_App_Console.Validators
                 {
                     Console.Clear(); Console.WriteLine("\x1b[3J");
                     
-                    var User = Session.Instance.User;
-                    
                     if(Session.Instance.User == null)
                         _ = new BankingApp();
                     else 
-                        _ = new Dashboard(User);
+                        _ = new Dashboard();
+                    
                     break;
                 }
             }

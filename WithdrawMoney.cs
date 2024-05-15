@@ -1,4 +1,5 @@
 ﻿using Banking_App_Console.Entities;
+using Banking_App_Console.Helpers;
 using Banking_App_Console.Validators.Balance;
 using Banking_App_Console.Validators.Password;
 
@@ -6,9 +7,10 @@ namespace Banking_App_Console
 {
     internal class WithdrawMoney
     {
-        public WithdrawMoney(User user, Dashboard dashboard)
+        public WithdrawMoney(Dashboard dashboard)
         {
-
+            var user = Session.Instance.User;
+            
             var loginPassValidator = new DeductBalance
             {
                 User = user

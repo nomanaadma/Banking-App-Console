@@ -1,4 +1,5 @@
 ﻿using Banking_App_Console.Entities;
+using Banking_App_Console.Helpers;
 using Banking_App_Console.Validators;
 using Banking_App_Console.Validators.Balance;
 using Banking_App_Console.Validators.Mail;
@@ -7,8 +8,9 @@ namespace Banking_App_Console
 {
     internal class SendMoney
     {
-        public SendMoney(User user, Dashboard dashboard)
+        public SendMoney(Dashboard dashboard)
         {
+            var user = Session.Instance.User;
 
             var SendByOptionsValidator = new OptionValidator
             {

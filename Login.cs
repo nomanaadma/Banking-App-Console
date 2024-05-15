@@ -22,7 +22,7 @@ namespace Banking_App_Console
 
             Session.Instance.User = emailObj.User;
 
-            _ = new Dashboard(emailObj.User);
+            _ = new Dashboard();
 
         }
     }

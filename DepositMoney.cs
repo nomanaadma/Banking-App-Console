@@ -1,13 +1,15 @@
 ﻿using Banking_App_Console.Entities;
+using Banking_App_Console.Helpers;
 using Banking_App_Console.Validators.Balance;
 
 namespace Banking_App_Console
 {
     internal class DepositMoney
     {
-        public DepositMoney(User user, Dashboard dashboard)
+        public DepositMoney(Dashboard dashboard)
         {
-
+            var user = Session.Instance.User;
+            
             var amountObj = Global.TakeInput("Amount", "Enter Amount:", new BasicBalance());
 
             var amount = amountObj.Input;

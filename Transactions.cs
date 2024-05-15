@@ -1,12 +1,15 @@
 ﻿using Banking_App_Console.Entities;
+using Banking_App_Console.Helpers;
 using ConsoleTables;
 
 namespace Banking_App_Console
 {
     internal class Transactions
     {
-        public Transactions(User user, Dashboard dashboard)
+        public Transactions(Dashboard dashboard)
         {
+            var user = Session.Instance.User;
+
             Console.WriteLine();
             var table = new ConsoleTable("Reference", "Amount", "Date");
 

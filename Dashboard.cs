@@ -7,13 +7,11 @@ namespace Banking_App_Console
 {
     internal class Dashboard
     {
-        public User User { get; set; }
-        public Dashboard(User user)
+        private User? User { get; set; }
+        public Dashboard()
         {
-
-            User = user;
+            User = Session.Instance.User;
             Init();
-
         }
 
         public void Init()
@@ -36,16 +34,16 @@ namespace Banking_App_Console
             switch (DashboardOptions.SelectedChoice.Value)
             {
                 case "DepositMoney":
-                    _ = new DepositMoney(User, this);
+                    _ = new DepositMoney(this);
                     break;
                 case "SendMoney":
-                    _ = new SendMoney(User, this);
+                    _ = new SendMoney(this);
                     break;
                 case "WithdrawMoney":
-                    _ = new WithdrawMoney(User, this);
+                    _ = new WithdrawMoney(this);
                     break;
                 case "Transactions":
-                    _ = new Transactions(User, this);
+                    _ = new Transactions(this);
                     break;
                 case "Logout":
                     Console.Clear(); Console.WriteLine("\x1b[3J");
