@@ -3,7 +3,7 @@ namespace Banking_App_Console.Validators
 {
     internal class OptionValidator : Validator
     {
-        public required List<Option> Choices { get; set; }
+        public required List<Option> Choices { get; init; }
         public Option? SelectedChoice;
 
         public override IValidator Valid(string name, string choice)

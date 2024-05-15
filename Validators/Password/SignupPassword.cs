@@ -18,7 +18,7 @@
         private static bool ValidatePassword(string passwd)
         {
 
-            if (passwd.Length < 5 || passwd.Length > 10)
+            if (passwd.Length is < 5 or > 10)
                 return false;
 
             if (!passwd.Any(char.IsUpper))
