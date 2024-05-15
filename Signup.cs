@@ -3,7 +3,6 @@ using Banking_App_Console.Validators;
 using Banking_App_Console.Validators.Cnic;
 using Banking_App_Console.Validators.Mail;
 using Banking_App_Console.Validators.Password;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Banking_App_Console
 {

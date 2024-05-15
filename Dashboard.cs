@@ -1,6 +1,5 @@
 ﻿using Banking_App_Console.Entities;
 using Banking_App_Console.Validators;
-using System.Transactions;
 using Banking_App_Console.Helpers;
 
 namespace Banking_App_Console
@@ -18,7 +17,7 @@ namespace Banking_App_Console
         {
             ShowWelcomeDetails();
 
-            var DashboardOptionsValidator = new OptionValidator
+            var dashboardOptionsValidator = new OptionValidator
             {
                 Choices = [
                     new Option { Id = 1, Msg = "Deposit Money", Value = "DepositMoney" },
@@ -29,9 +28,9 @@ namespace Banking_App_Console
                 ]
             };
 
-            var DashboardOptions = (OptionValidator)Global.TakeInput("Option", "Select your option below:", DashboardOptionsValidator);
+            var dashboardOptions = (OptionValidator)Global.TakeInput("Option", "Select your option below:", dashboardOptionsValidator);
 
-            switch (DashboardOptions.SelectedChoice.Value)
+            switch (dashboardOptions.SelectedChoice?.Value)
             {
                 case "DepositMoney":
                     _ = new DepositMoney(this);
@@ -47,29 +46,26 @@ namespace Banking_App_Console
                     break;
                 case "Logout":
                     Console.Clear(); Console.WriteLine("\x1b[3J");
-                    Session.Instance.User = null;
                     _ = new BankingApp();
                     break;
-
             }
 
         }
 
-        public void ShowWelcomeDetails()
+        private void ShowWelcomeDetails()
         {
+            
             Console.WriteLine("\nWelcome\n");
 
-            Console.WriteLine(User.Fullname);
-
-            Console.WriteLine(User.Balance);
+            Console.WriteLine(User?.Fullname);
 
             var amountCr = double.Parse(User.Balance);
 
-            Console.WriteLine($"Cnic: {User.Cnic}");
+            Console.WriteLine($"Cnic: {User?.Cnic}");
             Console.WriteLine($"Balance: {amountCr:N0}");
-            Console.WriteLine($"Card: {User.Card}");
-            Console.WriteLine($"Expire: {User.Expiry}");
-            Console.WriteLine($"CVC: {User.Cvc}");
+            Console.WriteLine($"Card: {User?.Card}");
+            Console.WriteLine($"Expire: {User?.Expiry}");
+            Console.WriteLine($"CVC: {User?.Cvc}");
         }
 
     }

@@ -2,15 +2,14 @@
 
 namespace Banking_App_Console
 {
-    public class Global
+    public static class Global
     {
         public static string GenerateNumber(int count)
         {
-
             var random = new Random();
             var randomIntegers = new int[count];
 
-            for (int i = 0; i < randomIntegers.Length; i++)
+            for (var i = 0; i < randomIntegers.Length; i++)
                 randomIntegers[i] = random.Next(0, 10);
 
             return string.Join("", randomIntegers);
@@ -56,17 +55,5 @@ namespace Banking_App_Console
         }
 
     }
-    static class RandomExtensions
-    {
-        public static void Shuffle<T>(this Random rng, T[] array)
-        {
-            int n = array.Length;
-            while (n > 1)
-            {
-                int k = rng.Next(n--);
-                (array[k], array[n]) = (array[n], array[k]);
-            }
-        }
-    }
-
+    
 }

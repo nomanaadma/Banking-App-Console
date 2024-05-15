@@ -6,12 +6,6 @@ namespace Banking_App_Console
 {
     internal class BankingApp
     {
-        public enum WelcomOperations
-        {
-            Login = 1,
-            Signup = 2,
-        }
-
         public BankingApp()
         {
             Init();
@@ -21,11 +15,11 @@ namespace Banking_App_Console
         {
             Session.Instance.User = null;
             
-            Console.WriteLine("Welcome to NS Banking");
+            Console.WriteLine("Welcome to N~A Bank");
             
             Console.WriteLine("\n At any step type 'back' to go back and type 'exit' to close the app.");
 
-            var WelcomeOptionValidator = new OptionValidator
+            var welcomeOptionValidator = new OptionValidator
             {
                 Choices = [
                     new Option { Id = 1, Msg = "Login", Value = "Login" },
@@ -33,9 +27,9 @@ namespace Banking_App_Console
                 ]
             };
 
-            var WelcomeOption = (OptionValidator)Global.TakeInput("Option", "Select your option below:", WelcomeOptionValidator);
-
-            switch (WelcomeOption.SelectedChoice.Value)
+            var welcomeOption = (OptionValidator)Global.TakeInput("Option", "Select your option below:", welcomeOptionValidator);
+    
+            switch (welcomeOption.SelectedChoice?.Value)
             {
                 case "Login":
                     _ = new Login(this);
@@ -44,7 +38,7 @@ namespace Banking_App_Console
                     _ = new Signup(this);
                     break;
             }
-
+            
         }
 
     }

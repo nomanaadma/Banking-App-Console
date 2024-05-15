@@ -12,7 +12,7 @@ namespace Banking_App_Console
         {
             var user = Session.Instance.User;
 
-            var SendByOptionsValidator = new OptionValidator
+            var sendByOptionsValidator = new OptionValidator
             {
                 Choices = [
                     new Option { Id = 1, Msg = "Email", Value = "Email" },
@@ -20,20 +20,20 @@ namespace Banking_App_Console
                 ]
             };
 
-            var SendByOption = (OptionValidator)Global.TakeInput("Option", "Send By:", SendByOptionsValidator);
+            var sendByOption = (OptionValidator)Global.TakeInput("Option", "Send By:", sendByOptionsValidator);
 
             User? bfUser = null;
 
-            switch (SendByOption.SelectedChoice.Value)
+            switch (sendByOption.SelectedChoice?.Value)
             {
                 case "Email":
 
-                    var SendMoneyMailValidator = new SendMoneyMail
+                    var sendMoneyMailValidator = new SendMoneyMail
                     {
                         LoggedInUser = user
                     };
 
-                    var emailObj = (SendMoneyMail)Global.TakeInput("Email", "Enter Email:", SendMoneyMailValidator);
+                    var emailObj = (SendMoneyMail)Global.TakeInput("Email", "Enter Email:", sendMoneyMailValidator);
 
                     bfUser = emailObj.User;
 
@@ -41,14 +41,14 @@ namespace Banking_App_Console
 
                 case "CNIC":
 
-                    var SendMoneyCnicValidator = new SendMoneyCnic
+                    var sendMoneyCnicValidator = new SendMoneyCnic
                     {
                         LoggedInUser = user
                     };
 
-                    var CnicObj = (SendMoneyCnic)Global.TakeInput("CNIC", "Enter CNIC:", SendMoneyCnicValidator);
+                    var cnicObj = (SendMoneyCnic)Global.TakeInput("CNIC", "Enter CNIC:", sendMoneyCnicValidator);
 
-                    bfUser = CnicObj.User;
+                    bfUser = cnicObj.User;
 
                     break;
             }
@@ -64,14 +64,14 @@ namespace Banking_App_Console
 
             var bfUserBalance = int.Parse(bfUser.Balance);
 
-            var amount_entered = int.Parse(amount);
+            var amountEntered = int.Parse(amount);
 
-            bfUser.Balance = (bfUserBalance + amount_entered).ToString();
+            bfUser.Balance = (bfUserBalance + amountEntered).ToString();
 
             FileSystem.UpdateUser(bfUser);
 
             var currentUserBalance = int.Parse(user.Balance);
-            var newAmount = (currentUserBalance - amount_entered).ToString();
+            var newAmount = (currentUserBalance - amountEntered).ToString();
             user.Balance = newAmount;
 
             FileSystem.UpdateUser(user);

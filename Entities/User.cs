@@ -2,15 +2,15 @@
 {
     public class User
     {
-        public string? Id { get; set; }
-        public string? Fullname { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-        public string? Cnic { get; set; }
+        public string? Id { get; init; }
+        public string? Fullname { get; init; }
+        public string? Email { get; init; }
+        public string? Password { get; init; }
+        public string? Cnic { get; init; }
         public string? Balance { get; set; }
-        public string? Card { get; set; }
-        public string? Expiry { get; set; }
-        public string? Cvc { get; set; }
+        public string? Card { get; init; }
+        public string? Expiry { get; init; }
+        public string? Cvc { get; init; }
 
     }
 }

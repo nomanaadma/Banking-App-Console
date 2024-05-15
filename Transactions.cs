@@ -1,5 +1,4 @@
-﻿using Banking_App_Console.Entities;
-using Banking_App_Console.Helpers;
+﻿using Banking_App_Console.Helpers;
 using ConsoleTables;
 
 namespace Banking_App_Console
@@ -19,11 +18,11 @@ namespace Banking_App_Console
             {
                 var transAmount = rowData.Amount;
 
-                var transferred_by_crUser = false;
+                var transferredByCrUser = false;
                 if (rowData.From == user.Id)
                 {
                     transAmount = "-" + transAmount;
-                    transferred_by_crUser = true;
+                    transferredByCrUser = true;
                 }
 
                 string? reference;
@@ -37,11 +36,11 @@ namespace Banking_App_Console
 
                     string? otherUserCond;
 
-                    // if the transaction is done by current loggedin user to some other user
-                    if (transferred_by_crUser)
+                    // if the transaction is done by current logged-In user to some other user
+                    if (transferredByCrUser)
                     {
                         otherUserCond = rowData.To;
-                        reference = "Money Tranfered to: ";
+                        reference = "Money Transferred to: ";
                     }
                     else
                     {

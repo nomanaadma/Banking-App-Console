@@ -1,13 +1,12 @@
 ﻿using System.Text;
 using Banking_App_Console.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Banking_App_Console
 {
-    public class FileSystem
+    public static class FileSystem
     {
-        private static readonly string extension = ".txt";
-        
+        private const string Extension = ".txt";
+
         public static string DataPath()
         {
             return Path.Combine(Path.GetFullPath(@"..\..\..\"), "Data");
@@ -15,10 +14,10 @@ namespace Banking_App_Console
 
         public static string FilePath(string file)
         {
-            return Path.Combine(DataPath(), file) + extension;
+            return Path.Combine(DataPath(), file) + Extension;
         }
 
-        public static string GetValues(object obj)
+        private static string GetValues(object obj)
         {
             var properties = obj.GetType().GetProperties();
             return string.Join(',', properties.Select(prop => prop.GetValue(obj)))+",\n";
@@ -37,7 +36,7 @@ namespace Banking_App_Console
             return File.ReadAllLines(file, Encoding.UTF8);
         }
 
-        public static List<Dictionary<string, string>> FindAll(string file, string data, bool single = false)
+        private static List<Dictionary<string, string>> FindAll(string file, string data, bool single = false)
         {
             var rows = ReadData(file);
 
@@ -49,22 +48,20 @@ namespace Banking_App_Console
 
             foreach (var row in rows)
             {
-                if (row.Contains(dataWithQoma))
+                if (!row.Contains(dataWithQoma)) continue;
+                
+                var dRow = new Dictionary<string, string>();
+                var dataColumns = row.Split(",");
+
+                for (var i = 0; i < dataColumns.Length; i++)
                 {
-                    var dRow = new Dictionary<string, string>();
-                    var dataColumns = row.Split(",");
-
-                    for (var i = 0; i < dataColumns.Length; i++)
-                    {
-                        dRow[titles[i]] = dataColumns[i];
-                    }
-
-                    foundRows.Add(dRow);
-
-                    if (single == true) 
-                        return foundRows;
-
+                    dRow[titles[i]] = dataColumns[i];
                 }
+
+                foundRows.Add(dRow);
+
+                if (single) 
+                    return foundRows;
 
             }
 
@@ -79,9 +76,9 @@ namespace Banking_App_Console
 
             foreach (var row in foundRowsD)
             {
-                var ETransaction = new ETransaction();
-                SetEntityPropertiesFromDictionary(ETransaction, row);
-                foundRowsT.Add(ETransaction);
+                var eTransaction = new ETransaction();
+                SetEntityPropertiesFromDictionary(eTransaction, row);
+                foundRowsT.Add(eTransaction);
             }
 
             return foundRowsT;
@@ -107,7 +104,7 @@ namespace Banking_App_Console
 
         }
 
-        public static void SetEntityPropertiesFromDictionary(object entity, Dictionary<string, string> data)
+        private static void SetEntityPropertiesFromDictionary(object entity, Dictionary<string, string> data)
         {
             var properties = entity.GetType().GetProperties();
             foreach (var prop in properties)
@@ -124,7 +121,7 @@ namespace Banking_App_Console
             UpdateRow("Users", dataRow);
         }
 
-        public static void UpdateRow(string file, string rowData)
+        private static void UpdateRow(string file, string rowData)
         {
 
             var fileData = ReadData(file);
