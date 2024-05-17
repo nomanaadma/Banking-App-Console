@@ -11,12 +11,12 @@ namespace Banking_App_Console
         {
             var user = Session.Instance.User;
             
-            var loginPassValidator = new DeductBalance
+            var deductValidator = new DeductBalance
             {
                 User = user
             };
 
-            var amountObj = Global.TakeInput("Amount", "Enter Amount:", loginPassValidator);
+            var amountObj = Global.TakeInput("Amount", "Enter Amount:", deductValidator);
             var amount = amountObj.Input;
 
             var amountInt = int.Parse(amount);

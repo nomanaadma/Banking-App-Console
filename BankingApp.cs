@@ -32,7 +32,7 @@ namespace Banking_App_Console
             switch (welcomeOption.SelectedChoice?.Value)
             {
                 case "Login":
-                    _ = new Login(this);
+                    _ = new Login();
                     break;
                 case "Signup":
                     _ = new Signup(this);

@@ -54,12 +54,12 @@ namespace Banking_App_Console
             }
 
 
-            var loginPassValidator = new DeductBalance
+            var deductValidator = new DeductBalance
             {
                 User = user
             };
 
-            var amountObj = Global.TakeInput("Amount", "Enter Amount:", loginPassValidator);
+            var amountObj = Global.TakeInput("Amount", "Enter Amount:", deductValidator);
             var amount = amountObj.Input;
 
             var bfUserBalance = int.Parse(bfUser.Balance);

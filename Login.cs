@@ -6,7 +6,7 @@ namespace Banking_App_Console
 {
     internal class Login
     {
-        public Login(BankingApp home)
+        public Login()
         {
             var emailObj = (NotExistsMail)Global.TakeInput("Email", "Enter your Email:", new NotExistsMail() );
 
